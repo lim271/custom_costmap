@@ -1,0 +1,8 @@
+<class_libraries>
+  <library path="libcustom_costmap">
+    <class type="custom_costmap::ObstacleLayer"   base_class_type="costmap_2d::Layer">
+      <description>Listens to laser scan and point cloud messages and marks and clears grid cells.</description>
+    </class>
+  </library>
+</class_libraries>
+
