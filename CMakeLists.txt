@@ -51,6 +51,7 @@ catkin_package(
     roscpp
     sensor_msgs
     tf2_ros
+    costmap_2d
   DEPENDS
     EIGEN3
     Boost
