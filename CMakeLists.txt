@@ -12,19 +12,19 @@ find_package(catkin REQUIRED
     pluginlib
     roscpp
     sensor_msgs
-    tf2
-    tf2_geometry_msgs
-    tf2_ros
-    tf2_sensor_msgs
+    tf
     costmap_2d
   )
 
+find_package(PCL REQUIRED)
+remove_definitions(-DDISABLE_LIBUSB-1.0)
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system thread)
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
 )
 
@@ -50,8 +50,10 @@ catkin_package(
     pluginlib
     roscpp
     sensor_msgs
-    tf2_ros
+    tf
+    costmap_2d
   DEPENDS
+    PCL
     EIGEN3
     Boost
 )
@@ -61,6 +63,7 @@ add_library(custom_costmap
 )
 add_dependencies(custom_costmap ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(custom_costmap
+  ${PCL_LIBRARIES}
   ${boost_LIBRARIES}
   ${catkin_LIBRARIES}
 )
